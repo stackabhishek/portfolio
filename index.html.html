@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pavada Samuel Abhishek | Full Stack Developer </title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    },
+                    colors: {
+                        zinc: {
+                            950: '#09090b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            background-color: #050508;
+            background-image: 
+                radial-gradient(at 50% 0%, rgba(99, 102, 241, 0.12) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.08) 0px, transparent 50%),
+                linear-gradient(to right, rgba(39, 39, 42, 0.08) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(39, 39, 42, 0.08) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 30px 30px, 30px 30px;
+            background-attachment: fixed;
+        }
+
+        /* Ambient glowing circles */
+        .glow-orb {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            filter: blur(140px);
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Subtle animated text cursor */
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1.2s infinite steps(1);
+            color: #818cf8;
+            font-weight: bold;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        /* Custom scrollbar matching dark mode minimalist design */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050508;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #27272a;
+            border-radius: 4px;
+            border: 2px solid #050508;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3f3f46;
+        }
+    </style>
+</head>
+<body class="text-zinc-300 font-sans antialiased selection:bg-indigo-900/60 selection:text-white">
+
+    <div class="glow-orb bg-indigo-600 top-20 left-10"></div>
+    <div class="glow-orb bg-emerald-600 top-[60vh] right-10"></div>
+
+    <!-- Nav Bar -->
+    <nav class="sticky top-0 z-50 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-900/60 transition-all duration-300">
+        <div class="max-w-5xl mx-auto px-6 sm:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Brand Signature -->
+                <a href="#hero" class="flex items-center space-x-2 group">
+                    <span class="font-mono text-xs font-semibold text-zinc-100 tracking-wider group-hover:text-indigo-400 transition-all duration-300">samuel abhishek</span>
+                </a>
+                
+                <!-- Main Links -->
+                <div class="hidden md:flex items-center space-x-8 text-xs font-mono tracking-tight">
+                    <a href="#about" class="text-zinc-400 hover:text-indigo-400 transition-colors">01. About</a>
+                    <a href="#skills" class="text-zinc-400 hover:text-indigo-400 transition-colors">02. Skills</a>
+                    <a href="#experience" class="text-zinc-400 hover:text-indigo-400 transition-colors">03. Experience</a>
+                    <a href="#projects" class="text-zinc-400 hover:text-indigo-400 transition-colors">04. Projects</a>
+                    <a href="#contact" class="text-zinc-400 hover:text-indigo-400 transition-colors">05. Contact</a>
+                </div>
+
+                <!-- Action Anchor -->
+                <div class="hidden md:block">
+                    <a href="#contact" class="text-xs font-mono border border-indigo-500/30 hover:border-indigo-400 bg-indigo-500/5 hover:bg-indigo-500/10 text-indigo-300 hover:text-indigo-200 px-4 py-2 rounded transition-all duration-300">
+                        Initiate Connection
+                    </a>
+                </div>
+
+                <!-- Mobile Trigger -->
+                <div class="flex md:hidden">
+                    <button id="mobile-menu-btn" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-zinc-400 hover:text-zinc-100 hover:bg-zinc-900 focus:outline-none transition-colors" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open Menu</span>
+                        <i id="menu-icon" class="fa-solid fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Dynamic Drawer -->
+        <div class="hidden md:hidden bg-zinc-950 border-b border-zinc-900" id="mobile-menu">
+            <div class="px-6 pt-3 pb-6 space-y-3 font-mono text-xs">
+                <a href="#about" class="mobile-nav-link block text-zinc-400 hover:text-indigo-400 py-2 transition-colors">01. About</a>
+                <a href="#skills" class="mobile-nav-link block text-zinc-400 hover:text-indigo-400 py-2 transition-colors">02. Skills</a>
+                <a href="#experience" class="mobile-nav-link block text-zinc-400 hover:text-indigo-400 py-2 transition-colors">03. Experience</a>
+                <a href="#projects" class="mobile-nav-link block text-zinc-400 hover:text-indigo-400 py-2 transition-colors">04. Projects</a>
+                <a href="#contact" class="mobile-nav-link block text-zinc-400 hover:text-indigo-400 py-2 transition-colors">05. Contact</a>
+                <div class="pt-2 border-t border-zinc-900">
+                    <a href="#contact" class="mobile-nav-link block text-center w-full bg-indigo-600 hover:bg-indigo-500 text-zinc-100 py-2.5 rounded font-medium transition-colors">Get in Touch</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Block -->
+    <section id="hero" class="relative min-h-[calc(100vh-4rem)] flex items-center justify-center py-20 px-6 sm:px-8 overflow-hidden z-10">
+        <div class="max-w-3xl w-full text-center space-y-8 flex flex-col items-center justify-center">
+            
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-white leading-tight">
+                Pavada Samuel <br class="sm:hidden">
+                <span class="font-normal bg-gradient-to-r from-indigo-400 via-purple-400 to-emerald-400 bg-clip-text text-transparent">Abhishek</span>
+            </h1>
+            
+            <div class="space-y-2">
+                <p class="text-base sm:text-lg font-mono text-indigo-300 font-medium tracking-wide">
+                    Full Stack Developer &amp; Computer Science Engineer
+                </p>
+                <p class="text-xs sm:text-sm font-mono text-zinc-500">
+                    &gt; <span id="typing-text" class="typing-cursor"></span>
+                </p>
+            </div>
+            
+            <p class="text-sm sm:text-base text-zinc-400 max-w-xl leading-relaxed font-light mx-auto">
+                Undergraduate Computer Science student &amp; Full Stack Developer specialized in building responsive web systems, real-time sync architectures, and robust computer vision models.
+            </p>
+            
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 w-full sm:w-auto">
+                <a href="#projects" class="w-full sm:w-auto px-8 py-3 rounded bg-indigo-600 hover:bg-indigo-500 font-semibold text-xs text-zinc-100 shadow-lg shadow-indigo-600/20 transition-all text-center">
+                    Explore Work
+                </a>
+                <a href="#contact" class="w-full sm:w-auto px-8 py-3 rounded bg-transparent hover:bg-zinc-900 text-xs text-zinc-400 hover:text-zinc-200 border border-zinc-800 hover:border-zinc-700 transition-all text-center">
+                    Get In Touch
+                </a>
+            </div>
+
+            <!-- Developer Social Directory -->
+            <div class="flex items-center justify-center gap-6 pt-4 text-zinc-500 text-sm">
+                <a href="https://github.com/stackabhishek" target="_blank" class="hover:text-indigo-400 transition-colors" title="GitHub">
+                    <i class="fa-brands fa-github text-lg"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/samuel-abhishek-16b373334" target="_blank" class="hover:text-indigo-400 transition-colors" title="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in text-lg"></i>
+                </a>
+                <a href="mailto:samuelabhishek758@gmail.com" class="hover:text-indigo-400 transition-colors" title="Email">
+                    <i class="fa-solid fa-envelope text-lg"></i>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 border-t border-zinc-900/40 bg-zinc-950/20 relative">
+        <div class="max-w-5xl mx-auto px-6 sm:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <!-- Section Header Left -->
+                <div class="lg:col-span-4 space-y-2">
+                    <span class="font-mono text-xs text-indigo-400">01. About</span>
+                    <h2 class="text-3xl font-light text-white tracking-tight">About Me</h2>
+                    <div class="h-[1.5px] w-12 bg-indigo-500 mt-4"></div>
+                </div>
+
+                <!-- Details Content Right -->
+                <div class="lg:col-span-8 space-y-6 text-sm text-zinc-400 leading-relaxed font-light">
+                    <p>
+                        I am Pavada Samuel Abhishek, an undergraduate Computer Science student at Andhra University. Guided by a strong objective to develop clean, responsive, and mobile-friendly interfaces, I work comfortably across web components and database architectures.
+                    </p>
+                    <p>
+                        Whether configuring multi-class artificial intelligence trackers using YOLOv8, orchestrating high-performance real-time chat websockets, or designing beautiful minimal user interfaces, I value software that is as efficient underneath as it is interactive on the surface.
+                    </p>
+
+                    <!-- Merged Education History Card -->
+                    <div class="space-y-4 pt-4">
+                        <h3 class="font-mono text-xs text-indigo-400 uppercase tracking-wider">Academic Record</h3>
+                        <div class="border border-zinc-900 rounded bg-zinc-950/40 p-5 divide-y divide-zinc-900/60 space-y-4">
+                            <!-- Higher Education -->
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                                <div class="space-y-0.5">
+                                    <span class="block text-xs font-mono text-zinc-500 uppercase tracking-wider">Andhra University</span>
+                                    <span class="block text-sm text-zinc-200">B.Tech Computer Science</span>
+                                </div>
+                                <span class="text-xs font-mono text-emerald-400 font-semibold bg-emerald-500/5 border border-emerald-500/20 px-2.5 py-1 rounded">CGPA: 7.0 / 10</span>
+                            </div>
+                            <!-- Intermediate College -->
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pt-4">
+                                <div class="space-y-0.5">
+                                    <span class="block text-xs font-mono text-zinc-500 uppercase tracking-wider">Ascent Junior College</span>
+                                    <span class="block text-sm text-zinc-200">Intermediate (P.C.M)</span>
+                                </div>
+                                <span class="text-xs font-mono text-emerald-400 font-semibold bg-emerald-500/5 border border-emerald-500/20 px-2.5 py-1 rounded">CGPA: 7.0 / 10</span>
+                            </div>
+                            <!-- Secondary School -->
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pt-4">
+                                <div class="space-y-0.5">
+                                    <span class="block text-xs font-mono text-zinc-500 uppercase tracking-wider">The Presidential School</span>
+                                    <span class="block text-sm text-zinc-200">CBSE Secondary</span>
+                                </div>
+                                <span class="text-xs font-mono text-emerald-400 font-semibold bg-emerald-500/5 border border-emerald-500/20 px-2.5 py-1 rounded">CGPA: 7.3 / 10</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Catalog -->
+    <section id="skills" class="py-24 border-t border-zinc-900/40">
+        <div class="max-w-5xl mx-auto px-6 sm:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <!-- Section Header Left -->
+                <div class="lg:col-span-4 space-y-2">
+                    <span class="font-mono text-xs text-indigo-400">02. Skills</span>
+                    <h2 class="text-3xl font-light text-white tracking-tight">Technical Stack</h2>
+                    <p class="text-xs text-zinc-500 font-mono mt-2">A verified index of my technologies mapped to academic and production pipeline development.</p>
+                    <div class="h-[1.5px] w-12 bg-indigo-500 mt-4"></div>
+                </div>
+
+                <!-- Skills Grid -->
+                <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-6 font-mono text-xs">
+                    
+                    <!-- Sub catalog 1 -->
+                    <div class="bg-zinc-950/40 border border-zinc-900 p-5 rounded hover:border-zinc-800 transition-colors space-y-4">
+                        <h3 class="text-indigo-400 font-semibold uppercase tracking-wider">Programming</h3>
+                        <ul class="space-y-2.5 text-zinc-400 font-light">
+                            <li class="flex items-center gap-2">
+                                <span class="text-emerald-400">></span> Python Language
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-emerald-400">></span> C Programming
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-emerald-400">></span> JavaScript (ES6+)
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Sub catalog 2 -->
+                    <div class="bg-zinc-950/40 border border-zinc-900 p-5 rounded hover:border-zinc-800 transition-colors space-y-4">
+                        <h3 class="text-indigo-400 font-semibold uppercase tracking-wider">Frontend & Backend</h3>
+                        <ul class="space-y-2.5 text-zinc-400 font-light">
+                            <li class="flex items-center gap-2">
+                                <span class="text-emerald-400">></span> HTML5 / CSS3
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-emerald-400">></span> Flask API Framework
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-emerald-400">></span> React JS & Sockets
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-emerald-400">></span> MySQL Databases
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Sub catalog 3 -->
+                    <div class="bg-zinc-950/40 border border-zinc-900 p-5 rounded hover:border-zinc-800 transition-colors space-y-4">
+                        <h3 class="text-indigo-400 font-semibold uppercase tracking-wider">Systems & Tools</h3>
+                        <ul class="space-y-2.5 text-zinc-400 font-light">
+                            <li class="flex items-center gap-2">
+                                <span class="text-emerald-400">></span> GitHub Versioning
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-emerald-400">></span> VS Code Studio
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-emerald-400">></span> YOLOv8 Computer Vision
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-24 border-t border-zinc-900/40 bg-zinc-950/20">
+        <div class="max-w-5xl mx-auto px-6 sm:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <!-- Section Header Left -->
+                <div class="lg:col-span-4 space-y-2">
+                    <span class="font-mono text-xs text-indigo-400">03. Experience</span>
+                    <h2 class="text-3xl font-light text-white tracking-tight">Professional History</h2>
+                    <p class="text-xs text-zinc-500 font-mono mt-2">Internships and industrial training milestones from active academic terms.</p>
+                    <div class="h-[1.5px] w-12 bg-indigo-500 mt-4"></div>
+                </div>
+
+                <!-- Timeline Core -->
+                <div class="lg:col-span-8 space-y-8 font-light text-sm">
+                    
+                    <!-- Internship Item 1 -->
+                    <div class="relative pl-6 border-l border-zinc-800 group hover:border-indigo-500 transition-colors">
+                        <div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-zinc-800 group-hover:bg-indigo-400 transition-colors"></div>
+                        
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1">
+                            <div>
+                                <span class="font-mono text-[10px] text-indigo-400 uppercase tracking-widest">Vizag Steel Plant - Intern</span>
+                                <h3 class="text-lg font-normal text-white">Full Stack & AI Development</h3>
+                            </div>
+                            <span class="font-mono text-xs text-zinc-500 bg-zinc-900 px-2 py-1 rounded">June 2025 — July 2025</span>
+                        </div>
+                        <ul class="mt-3 space-y-2 text-zinc-400 text-xs list-disc pl-4 leading-relaxed">
+                            <li>Researched and integrated a deep learning computer vision pipeline utilizing custom pre-trained YOLOv8 model weights for safety gear classification.</li>
+                            <li>Engineered an interactive, production-ready web application using Flask to receive real-time uploads and showcase detections.</li>
+                            <li>Implemented multi-class training data logic, responsive canvas rendering, and user session authorizations.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Internship Item 2 -->
+                    <div class="relative pl-6 border-l border-zinc-800 group hover:border-indigo-500 transition-colors">
+                        <div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-zinc-800 group-hover:bg-indigo-400 transition-colors"></div>
+                        
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1">
+                            <div>
+                                <span class="font-mono text-[10px] text-indigo-400 uppercase tracking-widest">SkillDzire - Intern</span>
+                                <h3 class="text-lg font-normal text-white">Web Development</h3>
+                            </div>
+                            <span class="font-mono text-xs text-zinc-500 bg-zinc-900 px-2 py-1 rounded">May 2025 — June 2025</span>
+                        </div>
+                        <ul class="mt-3 space-y-2 text-zinc-400 text-xs list-disc pl-4 leading-relaxed">
+                            <li>Designed and constructed responsive, fast layouts matching visual templates with HTML5 structural layers, modern CSS3 animations, and basic JavaScript triggers.</li>
+                            <li>Integrated key user actions including login validation forms, functional page navigation blocks, and fluid touch compatibility.</li>
+                            <li>Debugged and streamlined layout responses for seamless render profiles across mobile screens and desktop monitors.</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 border-t border-zinc-900/40">
+        <div class="max-w-5xl mx-auto px-6 sm:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <!-- Section Header Left -->
+                <div class="lg:col-span-4 space-y-2">
+                    <span class="font-mono text-xs text-indigo-400">04. Projects</span>
+                    <h2 class="text-3xl font-light text-white tracking-tight">Active Projects</h2>
+                    <p class="text-xs text-zinc-500 font-mono mt-2">Documented systems projects outlining file setups, core schema structures, and interactive testing suite simulations.</p>
+                    <div class="h-[1.5px] w-12 bg-indigo-500 mt-4"></div>
+                </div>
+
+                <!-- Projects grid list -->
+                <div class="lg:col-span-8 space-y-6">
+                    
+                    <!-- PPE Detection Card -->
+                    <div class="border border-zinc-900 hover:border-indigo-500/40 p-6 rounded bg-zinc-950/40 transition-all duration-300 group shadow-md shadow-zinc-950 hover:-translate-y-0.5">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <span class="text-[10px] font-mono text-indigo-400 tracking-wider">PROJECT_01 - CV MODEL</span>
+                                <h3 class="text-xl font-normal text-white mt-1 group-hover:text-indigo-300 transition-colors">PPE Kit Safety Detection System</h3>
+                            </div>
+                            <span class="text-xs font-mono text-zinc-600 bg-zinc-900/80 px-2.5 py-1 rounded">2025</span>
+                        </div>
+                        <p class="text-xs text-zinc-400 mt-3 font-light leading-relaxed">
+                            Designed and deployed during industrial training at Vizag Steel Plant. Implements YOLOv8 custom-trained weight maps to scan image frames and output precise multi-class bounding box details via a responsive Flask dashboard interface.
+                        </p>
+                        <div class="flex flex-wrap items-center justify-between gap-4 mt-6 pt-6 border-t border-zinc-900/60 text-[11px] font-mono">
+                            <div class="flex gap-3 text-zinc-500">
+                                <span>Flask</span>
+                                <span>YOLOv8</span>
+                                <span>Python</span>
+                                <span>MySQL</span>
+                            </div>
+                            <button onclick="openProjectSpecs('ppe')" class="text-zinc-200 hover:text-white hover:bg-indigo-600 border border-indigo-500/30 hover:border-indigo-400 bg-indigo-500/10 px-3 py-1.5 rounded transition-all flex items-center gap-1.5">
+                                <i class="fa-solid fa-folder-open text-[10px]"></i> View System Architecture & Code
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Real-Time Chat Card -->
+                    <div class="border border-zinc-900 hover:border-indigo-500/40 p-6 rounded bg-zinc-950/40 transition-all duration-300 group shadow-md shadow-zinc-950 hover:-translate-y-0.5">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <span class="text-[10px] font-mono text-indigo-400 tracking-wider">PROJECT_02 - SYSTEM SYNC</span>
+                                <h3 class="text-xl font-normal text-white mt-1 group-hover:text-indigo-300 transition-colors">Chime - Real-Time Chat Engine</h3>
+                            </div>
+                            <span class="text-xs font-mono text-zinc-600 bg-zinc-900/80 px-2.5 py-1 rounded">2026</span>
+                        </div>
+                        <p class="text-xs text-zinc-400 mt-3 font-light leading-relaxed">
+                            Referenced in standard developer project logs as "Real Time Chat Application.pdf". Features reactive React.js state managers connected via persistent TCP handshakes to dynamic Node.js / Express messaging pipelines.
+                        </p>
+                        <div class="flex flex-wrap items-center justify-between gap-4 mt-6 pt-6 border-t border-zinc-900/60 text-[11px] font-mono">
+                            <div class="flex gap-3 text-zinc-500">
+                                <span>React JS</span>
+                                <span>NodeJS</span>
+                                <span>Socket.io</span>
+                                <span>CSS3</span>
+                            </div>
+                            <button onclick="openProjectSpecs('chime')" class="text-zinc-200 hover:text-white hover:bg-indigo-600 border border-indigo-500/30 hover:border-indigo-400 bg-indigo-500/10 px-3 py-1.5 rounded transition-all flex items-center gap-1.5">
+                                <i class="fa-solid fa-folder-open text-[10px]"></i> View System Architecture & Code
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Multipurpose Case Study Drawer -->
+    <div id="project-drawer" class="fixed inset-y-0 right-0 w-full max-w-2xl bg-zinc-950/95 backdrop-blur-md border-l border-zinc-900 shadow-2xl z-50 transform translate-x-full transition-transform duration-500 ease-out flex flex-col hidden">
+        <!-- Drawer Header -->
+        <div class="p-6 border-b border-zinc-900 flex items-center justify-between bg-zinc-950">
+            <div class="font-mono text-xs text-indigo-400 flex items-center gap-2">
+                <span class="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span id="drawer-path">archive / ppe-detection.md</span>
+            </div>
+            <button id="close-drawer-btn" class="text-xs font-mono text-zinc-500 hover:text-zinc-200 border border-zinc-900 hover:border-zinc-800 px-3 py-1.5 rounded transition-all">
+                [ Close ]
+            </button>
+        </div>
+
+        <!-- Drawer Content -->
+        <div class="flex-1 overflow-y-auto p-6 space-y-8 custom-scrollbar">
+            <!-- Header detail -->
+            <div class="space-y-2">
+                <h2 id="drawer-title" class="text-2xl font-light text-white">PPE Kit Safety Detection System</h2>
+                <p id="drawer-tagline" class="text-xs text-zinc-400 font-mono">Flask-based deep learning computer vision pipeline with real-time REST API prediction outputs.</p>
+                <p id="drawer-desc" class="text-xs text-zinc-500 font-light leading-relaxed">
+                    Designed and built during training at Vizag Steel Plant. Real-time vision analytics are processed through backend weights profiles to identify required gear compliance metrics instantly.
+                </p>
+            </div>
+
+            <!-- Flow Chart System schema -->
+            <div id="drawer-topology" class="border border-zinc-900 p-4 rounded bg-zinc-950/40 space-y-4">
+                <!-- Injected dynamically -->
+            </div>
+
+            <!-- Code viewer with switcher tabs -->
+            <div class="border border-zinc-900 rounded overflow-hidden">
+                <div class="bg-zinc-950 border-b border-zinc-900 px-4 py-2 flex items-center justify-between text-[11px] font-mono text-zinc-500">
+                    <span>Source Code Directory</span>
+                    <span id="drawer-directory">src/</span>
+                </div>
+                <!-- Interactive Tabs bar -->
+                <div id="drawer-tabs-container" class="flex border-b border-zinc-900 font-mono text-[11px]">
+                    <!-- Injected dynamically -->
+                </div>
+                <!-- Main Screen -->
+                <div class="p-4 bg-zinc-950 text-xs font-mono leading-relaxed overflow-x-auto select-all max-h-[300px] overflow-y-auto">
+                    <pre id="code-block-display" class="text-zinc-400 text-[11px] font-light">
+                        <!-- Code contents -->
+                    </pre>
+                </div>
+            </div>
+
+            <!-- Automated Test Terminal simulation logs -->
+            <div class="border border-zinc-900 rounded overflow-hidden">
+                <div class="bg-zinc-950 px-4 py-2.5 border-b border-zinc-900 flex items-center justify-between font-mono text-[11px]">
+                    <span id="test-suite-name">Suite: ppe_pipeline_spec.py</span>
+                    <button id="run-suite-btn" class="text-zinc-300 hover:text-white bg-zinc-900 border border-zinc-800 hover:border-zinc-700 px-2.5 py-1 rounded text-[10px] flex items-center gap-1 transition-colors">
+                        <i class="fa-solid fa-play text-[8px] text-emerald-400"></i> Run Pipeline Test
+                    </button>
+                </div>
+                <div class="p-4 bg-zinc-950 font-mono text-[11px] text-zinc-500 min-h-[140px] space-y-1" id="suite-terminal">
+                    <div>[READY] Test logs configured. Trigger pipeline test to launch process simulation...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 border-t border-zinc-900/40">
+        <div class="max-w-5xl mx-auto px-6 sm:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <!-- Section Header Left -->
+                <div class="lg:col-span-4 space-y-4">
+                    <div class="space-y-2">
+                        <span class="font-mono text-xs text-indigo-400">05. Contact</span>
+                        <h2 class="text-3xl font-light text-white tracking-tight">Contact</h2>
+                        <div class="h-[1.5px] w-12 bg-indigo-500 mt-4"></div>
+                    </div>
+                    <p class="text-xs text-zinc-400 leading-relaxed font-light max-w-xs">
+                        If you are looking to discuss full-stack applications, computer vision pipelines, or student collaborative workspace queries, send a message.
+                    </p>
+
+                    <!-- Profile coordinates -->
+                    <div class="space-y-3 pt-4 font-mono text-xs">
+                        <div class="flex items-center space-x-3">
+                            <i class="fa-solid fa-location-dot text-indigo-400 w-4 text-center"></i>
+                            <span class="text-zinc-400">Visakhapatnam, India</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fa-solid fa-phone text-indigo-400 w-4 text-center"></i>
+                            <a href="tel:+919848212833" class="text-zinc-400 hover:text-zinc-100 transition-colors">+91 98482 12833</a>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fa-solid fa-envelope text-indigo-400 w-4 text-center"></i>
+                            <a href="mailto:samuelabhishek758@gmail.com" class="text-zinc-400 hover:text-zinc-100 transition-colors">samuelabhishek758@gmail.com</a>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fa-brands fa-linkedin text-indigo-400 w-4 text-center"></i>
+                            <a href="https://www.linkedin.com/in/samuel-abhishek-16b373334" target="_blank" class="text-zinc-400 hover:text-zinc-100 transition-colors">linkedin.com/in/samuel-abhishek</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Structured Input Form -->
+                <div class="lg:col-span-8">
+                    <div class="border border-zinc-900 p-6 sm:p-8 rounded bg-zinc-950/40">
+                        <form id="portfolio-contact-form" class="space-y-5">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 text-xs font-mono">
+                                <div>
+                                    <label for="contact-name" class="block text-zinc-500 mb-1.5 uppercase tracking-wide">01 / Full Name</label>
+                                    <input type="text" id="contact-name" required class="w-full bg-zinc-950/60 border border-zinc-900 rounded px-3 py-2.5 text-zinc-200 placeholder-zinc-700 focus:outline-none focus:border-indigo-500 transition-all" placeholder="John Doe">
+                                </div>
+                                <div>
+                                    <label for="contact-email" class="block text-zinc-500 mb-1.5 uppercase tracking-wide">02 / Email Address</label>
+                                    <input type="email" id="contact-email" required class="w-full bg-zinc-950/60 border border-zinc-900 rounded px-3 py-2.5 text-zinc-200 placeholder-zinc-700 focus:outline-none focus:border-indigo-500 transition-all" placeholder="john@example.com">
+                                </div>
+                            </div>
+                            <div class="text-xs font-mono">
+                                <label for="contact-subject" class="block text-zinc-500 mb-1.5 uppercase tracking-wide">03 / Subject Line</label>
+                                <input type="text" id="contact-subject" required class="w-full bg-zinc-950/60 border border-zinc-900 rounded px-3 py-2.5 text-zinc-200 placeholder-zinc-700 focus:outline-none focus:border-indigo-500 transition-all" placeholder="Project details or role query">
+                            </div>
+                            <div class="text-xs font-mono">
+                                <label for="contact-message" class="block text-zinc-500 mb-1.5 uppercase tracking-wide">04 / Message Details</label>
+                                <textarea id="contact-message" rows="4" required class="w-full bg-zinc-950/60 border border-zinc-900 rounded px-3 py-2.5 text-zinc-200 placeholder-zinc-700 focus:outline-none focus:border-indigo-500 transition-all resize-none font-sans" placeholder="Tell me about the requirements..."></textarea>
+                            </div>
+                            <div>
+                                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-zinc-100 font-mono text-xs py-3 rounded shadow-lg shadow-indigo-600/20 transition-all flex items-center justify-center space-x-2">
+                                    <span>Send Dispatch Payload</span>
+                                    <i class="fa-solid fa-paper-plane text-[10px]"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Dialog alert -->
+    <div id="custom-modal" class="fixed inset-0 z-50 flex items-center justify-center p-6 bg-zinc-950/80 backdrop-blur-xs hidden transition-all duration-300">
+        <div class="bg-zinc-950 border border-zinc-900 rounded max-w-sm w-full p-6 text-center shadow-2xl transform scale-95 transition-all duration-300" id="modal-container">
+            <div class="w-10 h-10 border border-zinc-800 rounded-full flex items-center justify-center text-emerald-400 text-lg mx-auto mb-4">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h3 class="text-base font-mono text-white mb-2" id="modal-title">Transmit Success</h3>
+            <p class="text-xs text-zinc-500 mb-6 leading-relaxed" id="modal-desc">Your message has been updated on my local stream. I will respond to your provided address shortly.</p>
+            <button id="close-modal-btn" class="w-full bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 py-2 rounded text-xs font-mono transition-colors">
+                [ Terminate Connection ]
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-zinc-950 border-t border-zinc-900/60 py-12 text-center text-xs font-mono text-zinc-600">
+        <div class="max-w-5xl mx-auto px-6 sm:px-8 space-y-4">
+            <div class="flex items-center justify-center space-x-2">
+                <span class="text-zinc-500">samuel abhishek</span>
+            </div>
+            <p class="text-[10px] text-zinc-700">Refined portfolio structure mapped to professional resume credentials.</p>
+            <p class="text-[10px] text-zinc-800">&copy; 2026 Pavada Samuel Abhishek. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        /* Elegant looping text typewriter matching resume specs */
+        const typingKeywords = [
+            "Computer Science Student",
+            "Full Stack Developer",
+            "Flask API Integrator",
+            "AI Developer (YOLOv8)"
+        ];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingSpeed = 60;
+        const deletingSpeed = 25;
+        const waitBeforeDelete = 2500;
+        const typingTextEl = document.getElementById("typing-text");
+
+        function typeEffect() {
+            const currentWord = typingKeywords[wordIndex];
+            
+            if (isDeleting) {
+                typingTextEl.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingTextEl.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let currentDelay = isDeleting ? deletingSpeed : typingSpeed;
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                currentDelay = waitBeforeDelete;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % typingKeywords.length;
+                currentDelay = 500;
+            }
+
+            setTimeout(typeEffect, currentDelay);
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            if (typingKeywords.length > 0) {
+                typeEffect();
+            }
+        });
+
+        /* Mobile responsive dropdown menu operations */
+        const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const menuIcon = document.getElementById("menu-icon");
+
+        mobileMenuBtn.addEventListener("click", () => {
+            const isExpanded = mobileMenuBtn.getAttribute("aria-expanded") === "true";
+            mobileMenuBtn.setAttribute("aria-expanded", !isExpanded);
+            mobileMenu.classList.toggle("hidden");
+
+            if (isExpanded) {
+                menuIcon.className = "fa-solid fa-bars text-lg";
+            } else {
+                menuIcon.className = "fa-solid fa-xmark text-lg";
+            }
+        });
+
+        document.querySelectorAll(".mobile-nav-link").forEach(link => {
+            link.addEventListener("click", () => {
+                mobileMenu.classList.add("hidden");
+                menuIcon.className = "fa-solid fa-bars text-lg";
+                mobileMenuBtn.setAttribute("aria-expanded", "false");
+            });
+        });
+
+        /* Contact Form modal dispatch */
+        const contactForm = document.getElementById("portfolio-contact-form");
+        const customModal = document.getElementById("custom-modal");
+        const modalContainer = document.getElementById("modal-container");
+        const closeModalBtn = document.getElementById("close-modal-btn");
+
+        contactForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById("contact-name").value;
+            const email = document.getElementById("contact-email").value;
+            const subject = document.getElementById("contact-subject").value;
+            const message = document.getElementById("contact-message").value;
+
+            if(name.trim() && email.trim() && subject.trim() && message.trim()) {
+                customModal.classList.remove("hidden");
+                setTimeout(() => {
+                    modalContainer.classList.remove("scale-95");
+                    modalContainer.classList.add("scale-100");
+                }, 50);
+
+                contactForm.reset();
+            }
+        });
+
+        closeModalBtn.addEventListener("click", () => {
+            modalContainer.classList.remove("scale-100");
+            modalContainer.classList.add("scale-95");
+            setTimeout(() => {
+                customModal.classList.add("hidden");
+            }, 150);
+        });
+
+        window.addEventListener("click", (e) => {
+            if(e.target === customModal) {
+                closeModalBtn.click();
+            }
+        });
+
+        /* Multipurpose Project Spec Data */
+        const projectsData = {
+            ppe: {
+                path: "archive / ppe-detection.md",
+                title: "PPE Kit Safety Detection System",
+                tagline: "Flask-based deep learning computer vision pipeline with real-time REST API prediction outputs.",
+                desc: "Designed and implemented during industrial training at Vizag Steel Plant. Translates input frame uploads into accurate safety equipment class metrics using an custom YOLOv8 object detection profile.",
+                directory: "ppe-detect/",
+                suiteName: "Suite: ppe_pipeline_spec.py",
+                testLogs: [
+                    "🧪 Launching deep inference check: ppe_pipeline_spec.py...",
+                    "✔ Test Case 1: Custom weights loaded cleanly. Detected 80 model layers.",
+                    "✔ Test Case 2: Multi-class validation dataset check: Helmets, Vests parsed.",
+                    "✔ Test Case 3: Flask endpoint processes image stream in 42ms with 94.2% model accuracy.",
+                    "✔ Test Case 4: Output coordinates formatted for standard web canvas drawing.",
+                    "✨ Automated model check complete. All tests PASSED successfully."
+                ],
+                topology: `
+                    <span class="text-[10px] font-mono text-indigo-400 block uppercase tracking-wider">Systems Topology</span>
+                    <div class="grid grid-cols-3 gap-2 items-center text-center font-mono text-[10px] text-zinc-400">
+                        <div class="border border-zinc-900 p-3 rounded bg-zinc-950">
+                            <i class="fa-brands fa-python text-lg text-yellow-500 mb-1"></i>
+                            <div class="font-semibold text-white">Flask Client</div>
+                            <div class="text-[8px] text-zinc-600 mt-1">app.py / templates</div>
+                        </div>
+                        <div class="flex flex-col items-center justify-center text-[9px] text-zinc-600">
+                            <div class="animate-pulse text-yellow-500">REST API</div>
+                            <div class="w-full h-[1px] bg-zinc-800 relative my-1">
+                                <span class="absolute -top-1 left-1/2 -translate-x-1/2 text-[8px]">⇄</span>
+                            </div>
+                            <div>Weights Map</div>
+                        </div>
+                        <div class="border border-zinc-900 p-3 rounded bg-zinc-950">
+                            <i class="fa-solid fa-microchip text-lg text-indigo-400 mb-1"></i>
+                            <div class="font-semibold text-white">YOLOv8 Model</div>
+                            <div class="text-[8px] text-zinc-600 mt-1">PyTorch / weights</div>
+                        </div>
+                    </div>
+                `,
+                tabs: [
+                    { name: "app.py", active: true, key: "app_py" },
+                    { name: "detect.py", active: false, key: "detect_py" }
+                ],
+                code: {
+                    app_py: `
+# File: app.py - Flask Server Interface
+from flask import Flask, render_template, request, jsonify
+from detect import run_inference
+
+app = Flask(__name__)
+
+@app.route('/', methods=['GET'])
+def index():
+    return render_template('index.html')
+
+@app.route('/detect', methods=['POST'])
+def detect_objects():
+    if 'image' not in request.files:
+        return jsonify({"error": "No image uploaded"}), 400
+    file = request.files['image']
+    results = run_inference(file)
+    return jsonify(results)
+
+if __name__ == '__main__':
+    app.run(debug=True, port=5000)
+                    `,
+                    detect_py: `
+# File: detect.py - YOLOv8 Custom Weights Processing
+import cv2
+import torch
+from ultralytics import YOLO
+
+# Load custom pre-trained safety weights 
+model = YOLO('models/ppe_yolov8_custom.pt')
+
+def run_inference(img_file):
+    # Process image streams
+    img = cv2.imdecode(np.fromstring(img_file.read(), np.uint8), cv2.IMREAD_COLOR)
+    results = model(img)
+    detections = []
+    
+    for r in results:
+        boxes = r.boxes
+        for box in boxes:
+            detections.append({
+                "class": model.names[int(box.cls[0])],
+                "confidence": float(box.conf[0]),
+                "bbox": [float(x) for x in box.xyxy[0]]
+            })
+    return {"status": "success", "objects": detections}
+                    `
+                }
+            },
+            chime: {
+                path: "archive / chime-system.md",
+                title: "Chime - Real-Time Chat Engine",
+                tagline: "High-performance synchronization system utilizing React frontend and Socket.io.",
+                desc: "Replaces HTTP polling logs with high-frequency bidirectional TCP socket sessions to stream room messages without reload latency.",
+                directory: "realtime-chat/",
+                suiteName: "Suite: chime_sockets_spec.js",
+                testLogs: [
+                    "🧪 Starting sockets check: chime_sockets_spec.js...",
+                    "✔ Test Case 1: WebSocket handshake validated on http://localhost:3000.",
+                    "✔ Test Case 2: Broadcaster distributes updates to active user instances.",
+                    "✔ Test Case 3: Message payload broadcast syncing parsed in <14ms.",
+                    "✔ Test Case 4: Disconnect pipelines run cleanly, clearing user state.",
+                    "✨ Sockets testing complete. Sockets interface operating securely."
+                ],
+                topology: `
+                    <span class="text-[10px] font-mono text-indigo-400 block uppercase tracking-wider">Systems Topology</span>
+                    <div class="grid grid-cols-3 gap-2 items-center text-center font-mono text-[10px] text-zinc-400">
+                        <div class="border border-zinc-900 p-3 rounded bg-zinc-950">
+                            <i class="fa-brands fa-react text-lg text-cyan-400 mb-1"></i>
+                            <div class="font-semibold text-white">React Client</div>
+                            <div class="text-[8px] text-zinc-600 mt-1">Chat.jsx / Login.jsx</div>
+                        </div>
+                        <div class="flex flex-col items-center justify-center text-[9px] text-zinc-600">
+                            <div class="animate-pulse text-emerald-400">WebSocket</div>
+                            <div class="w-full h-[1px] bg-zinc-800 relative my-1">
+                                <span class="absolute -top-1 left-1/2 -translate-x-1/2 text-[8px]">⇄</span>
+                            </div>
+                            <div>Socket.io</div>
+                        </div>
+                        <div class="border border-zinc-900 p-3 rounded bg-zinc-950">
+                            <i class="fa-brands fa-node-js text-lg text-emerald-400 mb-1"></i>
+                            <div class="font-semibold text-white">NodeJS Server</div>
+                            <div class="text-[8px] text-zinc-600 mt-1">server.js / Express</div>
+                        </div>
+                    </div>
+                `,
+                tabs: [
+                    { name: "Chat.jsx", active: true, key: "chat_jsx" },
+                    { name: "server.js", active: false, key: "server_js" }
+                ],
+                code: {
+                    chat_jsx: `
+/* File: Chat.jsx - React Multi-room Socket Interface */
+import React, { useState, useEffect } from 'react';
+import io from 'socket.io-client';
+import './Chat.css';
+
+const socket = io('http://localhost:3000');
+
+const Chat = ({ username, room }) => {
+  const [message, setMessage] = useState('');
+  const [messages, setMessages] = useState([]);
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    socket.emit('join', { username, room });
+    socket.on('message', (message) => {
+      setMessages((prev) => [...prev, message]);
+    });
+    return () => {
+      socket.off('message');
+    };
+  }, [username, room]);
+
+  const sendMessage = (e) => {
+    e.preventDefault();
+    if (message) {
+      socket.emit('message', message);
+      setMessage('');
+    }
+  };
+  /* JSX View handles messages list and inputs mapping */
+};
+                    `,
+                    server_js: `
+/* File: server.js - Backend WebSockets Listener */
+const express = require("express");
+const http = require("http");
+const { Server } = require("socket.io");
+
+const app = express();
+const server = http.createServer(app);
+const io = new Server(server, { cors: { origin: "*" } });
+
+io.on('connection', (socket) => {
+  socket.on('join', ({ username, room }) => {
+    socket.join(room);
+    io.to(room).emit('message', \`\${username} has joined.\`);
+  });
+  socket.on('disconnect', () => { /* Clean session models */ });
+});
+
+server.listen(5000, () => console.log("Sockets operational on port 5000"));
+                    `
+                }
+            }
+        };
+
+        let currentProjectKey = "ppe";
+        let activeCodeKey = "";
+
+        /* DOM elements */
+        const projectDrawer = document.getElementById("project-drawer");
+        const closeDrawerBtn = document.getElementById("close-drawer-btn");
+        const runSuiteBtn = document.getElementById("run-suite-btn");
+        const suiteTerminal = document.getElementById("suite-terminal");
+
+        /* Drawer open action */
+        function openProjectSpecs(projectKey) {
+            currentProjectKey = projectKey;
+            const data = projectsData[projectKey];
+
+            /* Render details */
+            document.getElementById("drawer-path").innerText = data.path;
+            document.getElementById("drawer-title").innerText = data.title;
+            document.getElementById("drawer-tagline").innerText = data.tagline;
+            document.getElementById("drawer-desc").innerText = data.desc;
+            document.getElementById("drawer-directory").innerText = data.directory;
+            document.getElementById("test-suite-name").innerText = data.suiteName;
+            document.getElementById("drawer-topology").innerHTML = data.topology;
+
+            /* Reset Suite console panel */
+            suiteTerminal.innerHTML = `<div>[READY] Test logs configured. Trigger '${data.suiteName.replace('Suite: ', '')}' to run system diagnostic...</div>`;
+            runSuiteBtn.disabled = false;
+            runSuiteBtn.classList.remove("opacity-50", "cursor-not-allowed");
+
+            /* Build tab switchers */
+            const tabsContainer = document.getElementById("drawer-tabs-container");
+            tabsContainer.innerHTML = "";
+            activeCodeKey = data.tabs[0].key;
+
+            data.tabs.forEach((tab) => {
+                const btn = document.createElement("button");
+                btn.className = `px-4 py-2 border-r border-zinc-900 transition-all focus:outline-none ${tab.active ? 'bg-zinc-900/60 text-zinc-200' : 'text-zinc-500 hover:text-zinc-300'}`;
+                btn.innerText = tab.name;
+                btn.onclick = () => switchCodeTab(tab.key, btn);
+                tabsContainer.appendChild(btn);
+            });
+
+            /* Update code display block */
+            updateCodeDisplay();
+
+            /* Display slide-in */
+            projectDrawer.classList.remove("hidden");
+            document.body.classList.add("overflow-hidden");
+            setTimeout(() => {
+                projectDrawer.classList.remove("translate-x-full");
+            }, 50);
+        }
+
+        /* Switch active code tabs */
+        function switchCodeTab(codeKey, activeBtn) {
+            activeCodeKey = codeKey;
+            
+            /* Highlight button */
+            const siblingButtons = activeBtn.parentElement.children;
+            for (let i = 0; i < siblingButtons.length; i++) {
+                siblingButtons[i].className = "px-4 py-2 border-r border-zinc-900 text-zinc-500 hover:text-zinc-300 focus:outline-none transition-all";
+            }
+            activeBtn.className = "px-4 py-2 border-r border-zinc-900 bg-zinc-900/60 text-zinc-200 focus:outline-none transition-all";
+            
+            updateCodeDisplay();
+        }
+
+        /* Render code panel contents */
+        function updateCodeDisplay() {
+            const displayEl = document.getElementById("code-block-display");
+            const cleanCode = projectsData[currentProjectKey].code[activeCodeKey].trim();
+            displayEl.textContent = cleanCode;
+        }
+
+        const closeDrawerAction = () => {
+            projectDrawer.classList.add("translate-x-full");
+            document.body.classList.remove("overflow-hidden");
+            setTimeout(() => {
+                projectDrawer.classList.add("hidden");
+            }, 500);
+        };
+
+        closeDrawerBtn.addEventListener("click", closeDrawerAction);
+
+        /* Click outside panel handler to close */
+        window.addEventListener("click", (e) => {
+            if (e.target === projectDrawer) {
+                closeDrawerAction();
+            }
+        });
+
+        /* Run logs simulator */
+        runSuiteBtn.addEventListener("click", () => {
+            const logs = projectsData[currentProjectKey].testLogs;
+            runSuiteBtn.disabled = true;
+            runSuiteBtn.classList.add("opacity-50", "cursor-not-allowed");
+            suiteTerminal.innerHTML = "";
+            let logIndex = 0;
+
+            function printLogs() {
+                if (logIndex < logs.length) {
+                    const line = document.createElement("div");
+                    if (logs[logIndex].startsWith("✔")) {
+                        line.className = "text-emerald-400";
+                    } else if (logs[logIndex].startsWith("✨")) {
+                        line.className = "text-indigo-400 font-semibold";
+                    } else {
+                        line.className = "text-zinc-300";
+                    }
+                    line.innerHTML = logs[logIndex];
+                    suiteTerminal.appendChild(line);
+                    logIndex++;
+                    setTimeout(printLogs, 400);
+                } else {
+                    runSuiteBtn.disabled = false;
+                    runSuiteBtn.classList.remove("opacity-50", "cursor-not-allowed");
+                }
+            }
+            printLogs();
+        });
+    </script>
+</body>
+</html>
